@@ -1,11 +1,3 @@
-Got it — the earlier VS Code steps I gave you were more step-by-step and beginner-friendly.
-Let’s rewrite the README so that **VS Code setup** is as clear as Eclipse.
-
-Here’s the **improved README** with **detailed VS Code instructions**:
-
----
-
-````markdown
 # Habit Tracker Application
 
 A simple Spring Boot & Thymeleaf-based Habit Tracker where users can register, log in, and manage their daily habits.
@@ -33,15 +25,15 @@ Make sure you have installed:
 - **Java 17 or higher**
 - **Maven**
 - **MySQL**
-- **Git** (optional if using GitHub Desktop)
+- **Git**
 
 ---
 
 ## How to Run in Eclipse
 1. **Clone the repository**
-   ```bash
+   
    git clone https://github.com/your-username/habit-tracker.git
-````
+
 
 2. Open **Eclipse** → `File` → `Import` → `Existing Maven Projects`.
 3. Select the cloned project folder and click **Finish**.
@@ -113,13 +105,3 @@ Make sure you have installed:
 ## License
 
 This project is open source. You can add a license if needed.
-
-```
-
----
-
-If you want, I can **add MySQL table creation instructions** so even someone with no DB setup can follow it without asking you.  
-That will make the README look professional.  
-
-Do you want me to include that?
-```
