@@ -105,3 +105,7 @@ Make sure you have installed:
 ## License
 
 This project is open source. You can add a license if needed.
+
+## Features Update
+- Improved documentation for project setup.
+- Clarified installation steps for developers.
