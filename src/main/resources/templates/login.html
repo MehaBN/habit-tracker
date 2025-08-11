@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - Habit Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .success {
+            color: green;
+            margin-bottom: 10px;
+        }
+        .link {
+            margin-top: 15px;
+        }
+        .link a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+<!-- Account Deleted Message -->
+
+
+<div class="container">
+<div th:if="${param.accountDeleted}" class="success">
+    Your account has been deleted successfully.
+</div>
+
+    <h2>Login</h2>
+
+    <!-- Error Message -->
+    <div th:if="${param.error}" class="error">
+        Invalid username or password
+    </div>
+
+    <!-- Logout Message -->
+    <div th:if="${param.logout}" class="success">
+        You have been logged out successfully
+    </div>
+
+    <!-- ✅ Success Message after Register -->
+<div th:if="${param.registered}" 
+     style="background:#d4edda; color:#155724; padding:10px; border-radius:6px; margin-bottom:15px;">
+    🎉 Successfully registered! You can now log in.
+</div>
+
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" placeholder="Enter username" required />
+        <input type="password" name="password" placeholder="Enter password" required />
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="link">
+        <p>Don’t have an account? <a th:href="@{/register}">Register here</a></p>
+    </div>
+</div>
+</body>
+</html>

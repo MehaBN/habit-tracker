@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register - Habit Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .link {
+            margin-top: 15px;
+        }
+        .link a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+<div th:if="${param.error}" 
+     style="background:#f8d7da; color:#721c24; padding:10px; border-radius:6px; margin-bottom:15px;">
+    ⚠️ Username already exists. Please choose another.
+</div>
+
+<div th:if="${param.registered}" 
+     style="background:#d4edda; color:#155724; padding:10px; border-radius:6px; margin-bottom:15px;">
+    ✅ Registration successful! Please log in.
+</div>
+
+<div class="container">
+    <h2>Create Account</h2>
+
+    <form th:action="@{/register}" method="post">
+        <input type="text" name="username" placeholder="Choose username" required />
+        <input type="password" name="password" placeholder="Choose password" required />
+        <button type="submit">Register</button>
+    </form>
+
+    <div class="link">
+        <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+    </div>
+</div>
+</body>
+</html>

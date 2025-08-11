@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Habit Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        input[type="checkbox"] {
+            margin-left: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #eee;
+        }
+        li.completed {
+            text-decoration: line-through;
+            color: gray;
+            background: #e6ffe6;
+        }
+        .actions button {
+            background: #007BFF;
+            margin-left: 10px;
+        }
+        .actions button.delete {
+            background: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <h2>Welcome, <span th:text="${username}">User</span> 👋</h2>
+
+<div th:if="${param.success}" 
+     style="background: #d4edda; color: #155724; padding: 10px; border-radius: 6px; margin-bottom: 20px;">
+    ✅ Successfully logged in!
+</div>
+
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" style="background:#e74c3c; border:none; padding:8px 15px; color:white; border-radius:6px; cursor:pointer;">
+            Logout
+        </button>
+    </form>
+    <form th:action="@{/delete-account}" method="post" style="display:inline;">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button type="submit" style="background:#555; border:none; padding:8px 15px; color:white; border-radius:6px; cursor:pointer;">
+        Delete Account
+    </button>
+</form>
+    
+</div>
+
+<div class="container">
+    <h1>Habit Tracker</h1>
+
+    <!-- Add Habit Form -->
+    <form action="/habits" method="post">
+        <!-- ✅ CSRF token -->
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+        <input type="text" name="name" placeholder="Habit name" required />
+        <input type="text" name="description" placeholder="Description" />
+        <label>
+            Completed <input type="checkbox" name="completed"/>
+        </label>
+        <button type="submit">Add</button>
+    </form>
+
+    <!-- Habit List -->
+    <ul>
+        <li th:each="habit : ${habits}" th:classappend="${habit.completed} ? 'completed'">
+            <span>
+                <b th:text="${habit.name}"></b> - 
+                <span th:text="${habit.description}"></span>
+            </span>
+            <div class="actions">
+                <!-- Toggle Habit -->
+                <form th:action="@{/habits/{id}/toggle(id=${habit.id})}" method="post" style="display:inline;">
+                    <!-- ✅ CSRF token -->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <button type="submit" th:text="${habit.completed} ? 'Undo' : 'Complete'"></button>
+                </form>
+
+                <!-- Delete Habit -->
+                <form th:action="@{/habits/{id}/delete(id=${habit.id})}" method="post" style="display:inline;">
+                    <!-- ✅ CSRF token -->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <button type="submit" class="delete">Delete</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

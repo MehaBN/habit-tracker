@@ -1,0 +1,10 @@
+com\habittracker\model\Habit.class
+com\habittracker\repository\HabitRepository.class
+com\habittracker\config\AppConfig.class
+com\habittracker\HabitTrackerApplication.class
+com\habittracker\controller\UserController.class
+com\habittracker\model\User.class
+com\habittracker\config\SecurityConfig.class
+com\habittracker\service\UserService.class
+com\habittracker\repository\UserRepository.class
+com\habittracker\controller\HabitController.class
