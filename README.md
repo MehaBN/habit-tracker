@@ -108,4 +108,4 @@ Make sure you have installed:
 - Improved documentation for project setup.
 - Clarified installation steps for developers.
 
-THANK YOU!!!!
+THANK YOU!!!
