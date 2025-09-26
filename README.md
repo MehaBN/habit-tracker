@@ -1,6 +1,6 @@
 # Habit Tracker application
 
-A simple Spring Boot & Thymeleaf-based Habit Tracker where users can register, log in, and manage their daily habits..
+A simple Spring Boot & Thymeleaf-based Habit Tracker where users can register, log in, and manage their daily habits.
 
 ---
 ## Features
